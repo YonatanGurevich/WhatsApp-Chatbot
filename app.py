@@ -1,6 +1,7 @@
 from flask import Flask, request
 from twilio.rest import Client
 import mysql.connector
+import os
 from twilio.twiml.messaging_response import MessagingResponse
 
 
@@ -134,8 +135,8 @@ def order(schema, client_num, message):
 
 app = Flask(__name__)
 
-account_sid = 'ACf78cbabb0fbe40329716e60346f75a6b'
-auth_token = '41c75eb9bb25faea72c027dbf90a2766'
+account_sid = os.environ.get('twilio_account_sid')
+auth_token = os.environ.get('twilio_auth_token')
 
 client = Client(account_sid, auth_token)
 phone_number = 'whatsapp:+14155238886'
